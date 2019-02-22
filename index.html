@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Note Manager</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  
+
+<div class="wrapper">
+
+
+  <header>
+    <h1>Note Manager</h1>
+    <form id="searchBar">
+    <input type="text" id="searchBars" placeholder="Search Notes..">
+    </form>
+  </header>
+  <div class="notesList">
+    <ul id="list">
+        <li>
+          <p class="firstPara">note 1</p>
+          <p class="secondPara">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <i class="fa fa-times-circle" aria-hidden="true"></i>
+          </p>
+          <input type="text" class="textBx">
+        </li>
+        <li>
+            <p class="firstPara">note 2</p>
+            <p class="secondPara">
+                <i class="fa fa-check" aria-hidden="true"></i>
+              <i class="fa fa-times-circle" aria-hidden="true"></i>
+            </p>
+            <input type="text" class="textBx">
+          </li>
+          <li>
+              <p class="firstPara">note 3</p>
+              <p class="secondPara">
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+              </p>
+              <input type="text" class="textBx">
+            </li>
+          
+    </ul>
+    <div class="showHideList">
+      <label for="showHide" id="shlabel">Hide List</label>
+      <input type="checkbox" id="showHide">
+    </div>
+
+    <div class="add">
+    <input type="text" placeholder="Add Note" id="addNote">
+    <input type="submit" value="Add" id="addBtn">
+    </div>
+  </div>
+</div>
+</body>
+
+  <script type="text/javascript">
+  
+    //----------------ADDNOTES
+
+
+
+
+
+
+    var addBtn=document.getElementById("addBtn");
+    var ul=document.getElementById("list")
+    
+    
+    
+    addBtn.addEventListener("click",function(e){
+      e.preventDefault();
+      
+
+      
+      var addText=document.getElementById("addNote");
+
+
+      if(addText.value!==" "){
+    
+      var listNew=document.createElement("li"),
+          paraOne=document.createElement("p"),
+          paraTwo=document.createElement("p"),
+          firstIcon=document.createElement("i"),
+          secondIcon=document.createElement("i"),
+          inpt=document.createElement("input");
+
+         
+         firstIcon.className="fa fa-check";
+         secondIcon.className="fa fa-times-circle";
+          paraTwo.className="secondPara";
+          paraOne.className="firstPara"
+          inpt.className="textBx";
+      
+        paraOne.textContent=addText.value;
+
+
+      
+        paraTwo.appendChild(firstIcon);
+        paraTwo.appendChild(secondIcon);
+      
+        listNew.appendChild(paraOne);
+        listNew.appendChild(paraTwo);
+        listNew.appendChild(inpt);
+
+        ul.appendChild(listNew);
+        addText.value="";
+      }
+
+    });
+
+
+    //--------------------------HIDE/SHOW LIST
+
+
+
+
+
+    var label=document.getElementById("shlabel");
+    var showHide=document.getElementById("showHide");
+    showHide.addEventListener("click",function(){
+    
+
+      if(showHide.checked){
+        ul.style.display="none";
+      label.textContent="Show List";
+      }else {
+        ul.style.display="block";
+      //label.textContent="Hide List";
+      }
+
+
+
+    });
+
+
+
+    //--------------------------SEARCHBAR
+
+
+
+
+    var searchText=document.querySelector("#searchBar input");
+
+    searchText.addEventListener("keyup",function(e){
+
+      var searchChar=e.target.value.toUpperCase();
+
+      var notes=ul.getElementsByTagName("li");
+
+      Array.from(notes).forEach(function(note) {
+        var parText=note.firstElementChild.textContent;
+
+        if(parText.toUpperCase().indexOf(searchChar)!==-1){
+            note.style.display="block";
+        }else{
+          note.style.display="none";
+        }
+
+
+      });
+
+    });
+
+
+
+
+
+  </script>
+</html>
