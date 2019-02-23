@@ -59,7 +59,7 @@ header h1{
 }
 .fa-times-circle{
   color:rgb(230, 52, 40);
-  opacity: 0;
+  opacity: 1;
 }
 .textBx{
   display: none;
