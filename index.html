@@ -169,7 +169,19 @@
 
     });
 
+//-------------DELETE NOTE  
 
+    var del=document.querySelectorAll(".notesList li .fa-times-circle");
+
+    Array.from(del).forEach(function(btn){
+      btn.addEventListener("click",function(e){
+        const li=e.target.parentNode.parentNode;
+        li.parentNode.removeChild(li)
+      
+      });
+    
+    });
+    
 
 
 
